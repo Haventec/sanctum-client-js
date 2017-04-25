@@ -1,0 +1,30 @@
+{
+  "name": "haventec/securewallet-js",
+  "version": "0.0.1",
+  "description": "Haventec Secure Wallet",
+  "keywords": [],
+  "author": "John Kelaita <john.kelaita@haventec.com>",
+  "repository": "",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "homepage": "",
+  "contributors": [
+    {
+      "name": "John Kelaita"
+    }
+  ],
+  "bugs": {
+    "url": "",
+    "email": "john.kelaita@haventec.com"
+  },
+  "dependencies": {
+    "haventec/common-js": "0.0.1"
+  },
+  "devDependencies": {},
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ]
+}
