@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common";
+import {HttpService} from "@haventec/common-js";
 import {Tenant} from "./model/tenant";
 
 export class TenantService {

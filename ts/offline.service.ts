@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common";
+import {HttpService} from "@haventec/common-js";
 import {Offline} from "./model/offline";
 
 export class OfflineService {

@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common";
+import {HttpService} from "@haventec/common-js";
 
 export class AuditEntryService {
     private basePathSw: string;

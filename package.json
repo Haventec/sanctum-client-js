@@ -1,5 +1,5 @@
 {
-  "name": "haventec/securewallet-js",
+  "name": "@haventec/securewallet-js",
   "version": "0.0.1",
   "description": "Haventec Secure Wallet",
   "keywords": [],
@@ -18,7 +18,7 @@
     "email": "john.kelaita@haventec.com"
   },
   "dependencies": {
-    "haventec/common-js": "0.0.1"
+    "@haventec/common-js": "0.0.5"
   },
   "devDependencies": {},
   "licenses": [

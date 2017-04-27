@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common";
+import {HttpService} from "@haventec/common-js";
 import {Application} from "./model/application";
 
 export class ApplicationService {

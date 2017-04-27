@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common";
+import {HttpService} from "@haventec/common-js";
 import {User} from "./model/user";
 import {AuditEntry} from "./model/auditentry";
 
