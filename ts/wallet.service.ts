@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common-js";
+import {HttpService, LocalDataService} from "@haventec/common-js";
 import {Wallet} from "./model/wallet";
 import {AuditEntry} from "./model/auditentry";
 
@@ -14,11 +14,13 @@ export class WalletService {
     private disableUrl = '/admin/keystore/disable';
 
     private http: HttpService;
+    private localDataService: LocalDataService;
 
     constructor(
         public domainUrlSw: string,
         public domainUrlTp: string) {
         this.http = new HttpService();
+        this.localDataService = new LocalDataService();
         this.basePathSw = domainUrlSw;
         this.basePathTp = domainUrlTp;
     }
@@ -27,21 +29,21 @@ export class WalletService {
 
         let url = this.basePathSw + this.listUrl + applicationUUID + '/' + userId + "?size=" + take + "&page=" + from;
 
-        return this.http.get(url);
+        return this.http.get(url, this.localDataService.getToken());
     }
 
     searchById(appId: string, id: string) {
 
         let url = this.basePathSw + this.listUrl + appId + this.searchIdUrl + id;
 
-        return this.http.get(url);
+        return this.http.get(url, this.localDataService.getToken());
     }
 
     searchByUsername(appId: string, username: string) {
 
         let url = this.basePathSw + this.listUrl + appId + this.searchUsernameUrl + username;
 
-        return this.http.get(url);
+        return this.http.get(url, this.localDataService.getToken());
     }
 
     create(apiKey: string, username: string, tenantUUID: string, applicationUUID: string, walletName: string, cred: string,
@@ -60,7 +62,7 @@ export class WalletService {
             osType: osType,
             browserType: browserType,
             browserVersion: browserVersion
-        });
+        }, this.localDataService.getToken());
     }
 
 
@@ -68,13 +70,13 @@ export class WalletService {
 
         let url = this.basePathSw + this.changelockstatusUrl;
 
-        return this.http.post(url, {applicationUUID: appId, id: id, lock: !locked});
+        return this.http.post(url, {applicationUUID: appId, id: id, lock: !locked}, this.localDataService.getToken());
     }
 
     disable(appId: string, id: string) {
 
         let url = this.basePathSw + this.disableUrl;
 
-        return this.http.post(url, {applicationUUID: appId, id: id});
+        return this.http.post(url, {applicationUUID: appId, id: id}, this.localDataService.getToken());
     }
 }

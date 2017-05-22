@@ -1,4 +1,4 @@
-import {HttpService} from "@haventec/common-js";
+import {HttpService, LocalDataService} from "@haventec/common-js";
 import {Offline} from "./model/offline";
 
 export class OfflineService {
@@ -12,11 +12,14 @@ export class OfflineService {
     private transactUrl = "/offline/transact";
 
     private http: HttpService;
+    private localDataService: LocalDataService;
 
     constructor(
         public domainUrlSw: string,
         public domainUrlTp: string) {
         this.http = new HttpService();
+        this.localDataService = new LocalDataService();
+
         this.basePathSw = domainUrlSw;
         this.basePathTp = domainUrlTp;
     }
@@ -26,21 +29,21 @@ export class OfflineService {
         let url = this.basePathSw + this.rootUrl + this.searchByTypeUrl
             + transactionType + "?size=" + take + "&page=" + from;
 
-        return this.http.get(url);
+        return this.http.get(url, this.localDataService.getToken());
     }
 
     public searchByTypeAndApp(transactionType: string, applicationUUID: string) {
 
         let url = this.basePathSw + this.rootUrl + this.searchByTypeAndAppUrl + transactionType + "/" + applicationUUID;
 
-        return this.http.get(url);
+        return this.http.get(url, this.localDataService.getToken());
     }
 
     public delete(applicationUUID: string, udid: string) {
 
         let url = this.basePathSw + this.deleteUrl;
 
-        return this.http.post(url, {applicationUUID: applicationUUID, udid: udid});
+        return this.http.post(url, {applicationUUID: applicationUUID, udid: udid}, this.localDataService.getToken());
     }
 
     public register(username: string, apiKey: string, applicationUUID: string, walletName: string, cred: string,
@@ -56,7 +59,7 @@ export class OfflineService {
             cred: cred,
             transactionType: transactionType,
             transactionDetails: transactionDetails
-        });
+        }, this.localDataService.getToken());
     }
 
     public transact(applicationUUID: string, apiKey: string, udid: string, transactionType: number, publicPem: string, pin: number) {
@@ -70,7 +73,7 @@ export class OfflineService {
             transactionType: transactionType,
             publicPem: publicPem,
             pin: pin
-        });
+        }, this.localDataService.getToken());
     }
 
 }

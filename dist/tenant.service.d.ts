@@ -13,13 +13,14 @@ export declare class TenantService {
     private changelockstatusUrl;
     private disableUrl;
     private http;
+    private localDataService;
     constructor(domainUrlSw: string, domainUrlTp: string);
-    list(from: number, take: number): any;
-    searchById(id: string): any;
-    searchByUuid(uuid: string): any;
-    searchByName(name: string): any;
-    create(tenant: Tenant): any;
-    update(tenant: Tenant): any;
-    changelockstatus(id: string, locked: boolean): any;
-    disable(id: string): any;
+    list(from: number, take: number): Promise<{}>;
+    searchById(id: string): Promise<{}>;
+    searchByUuid(uuid: string): Promise<{}>;
+    searchByName(name: string): Promise<{}>;
+    create(tenant: Tenant): Promise<{}>;
+    update(tenant: Tenant): Promise<{}>;
+    changelockstatus(id: string, locked: boolean): Promise<{}>;
+    disable(id: string): Promise<{}>;
 }
