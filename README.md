@@ -4,7 +4,7 @@ Haventec Secure Wallet Javascript SDK
 
 ## Installation
 
-`npm install haventec/securewallet-js`
+`npm install @haventec/securewallet-js`
 
 ## Contributors
 
