@@ -51,7 +51,7 @@ export class WalletService {
 
         let url = this.basePathSw + this.createUrl;
 
-        return this.http.post(url, {
+        return this.http.postNoAuth(url, {
             apiKey: apiKey,
             username: username,
             tenantUUID: tenantUUID,
@@ -62,9 +62,23 @@ export class WalletService {
             osType: osType,
             browserType: browserType,
             browserVersion: browserVersion
-        }, this.localDataService.getToken());
+        });
     }
 
+    process(apiKey: string, eCred: string,
+           fonts: Set<string>, osType: string, browserType: string, browserVersion: string ) {
+
+        let url = this.basePathSw + this.createUrl;
+
+        return this.http.postNoAuth(url, {
+            apiKey: apiKey,
+            eCred: eCred,
+            fonts: fonts,
+            osType: osType,
+            browserType: browserType,
+            browserVersion: browserVersion
+        });
+    }
 
     changelockstatus(appId: string, id: string, locked: boolean) {
 

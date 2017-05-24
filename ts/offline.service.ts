@@ -51,7 +51,7 @@ export class OfflineService {
 
         let url = this.basePathSw + this.registerUrl;
 
-        return this.http.post(url, {
+        return this.http.postNoAuth(url, {
             username: username,
             apiKey: apiKey,
             applicationUUID: applicationUUID,
@@ -59,21 +59,21 @@ export class OfflineService {
             cred: cred,
             transactionType: transactionType,
             transactionDetails: transactionDetails
-        }, this.localDataService.getToken());
+        });
     }
 
     public transact(applicationUUID: string, apiKey: string, udid: string, transactionType: number, publicPem: string, pin: number) {
 
         let url = this.basePathSw + this.transactUrl;
 
-        return this.http.post(url,{
+        return this.http.postNoAuth(url,{
             applicationUUID: applicationUUID,
             apiKey: apiKey,
             udid: udid,
             transactionType: transactionType,
             publicPem: publicPem,
             pin: pin
-        }, this.localDataService.getToken());
+        });
     }
 
 }

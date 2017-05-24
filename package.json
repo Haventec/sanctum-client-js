@@ -1,6 +1,6 @@
 {
-  "name": "@haventec/securewallet-js",
-  "version": "0.0.1",
+  "name": "haventec/securewallet-js",
+  "version": "0.0.2",
   "description": "Haventec Secure Wallet",
   "keywords": [],
   "author": "John Kelaita <john.kelaita@haventec.com>",
