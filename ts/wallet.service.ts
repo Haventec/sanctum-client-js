@@ -43,7 +43,7 @@ export class WalletService {
         return this.http.get(url, this.localDataService.getToken());
     }
 
-    register(apiKey: string, username: string, tenantUUID: string, applicationUUID: string, walletName: string, cred: string,
+    register(apiKey: string, username: string, applicationUUID: string, walletName: string, cred: string,
             fonts: Set<string>, osType: string, browserType: string, browserVersion: string ) {
 
         let url = this.baseUrl + this.registerUrl;
@@ -51,7 +51,6 @@ export class WalletService {
         return this.http.postNoAuth(url, {
             apiKey: apiKey,
             username: username,
-            tenantUUID: tenantUUID,
             applicationUUID: applicationUUID,
             walletName: walletName,
             cred: cred,
