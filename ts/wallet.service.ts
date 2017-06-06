@@ -3,12 +3,11 @@ import {Wallet} from "./model/wallet";
 import {AuditEntry} from "./model/auditentry";
 
 export class WalletService {
-    private basePathSw: string;
-    private basePathTp: string;
+    private baseUrl: string;
     private listUrl = '/admin/keystore/';
     private searchIdUrl = '/searchbyid/';
     private searchUsernameUrl = '/searchbyusername/';
-    private createUrl = '/keystore/register';
+    private registerUrl = '/keystore/register';
     private getcredentialsUrl = '/keystore/getcredentials';
     private changelockstatusUrl = '/admin/keystore/changelockstatus';
     private disableUrl = '/admin/keystore/disable';
@@ -17,39 +16,37 @@ export class WalletService {
     private localDataService: LocalDataService;
 
     constructor(
-        public domainUrlSw: string,
-        public domainUrlTp: string) {
+        public domainUrlSw: string) {
         this.http = new HttpService();
         this.localDataService = new LocalDataService();
-        this.basePathSw = domainUrlSw;
-        this.basePathTp = domainUrlTp;
+        this.baseUrl = domainUrlSw;
     }
 
     list(applicationUUID: string, userId, from: number, take: number) {
 
-        let url = this.basePathSw + this.listUrl + applicationUUID + '/' + userId + "?size=" + take + "&page=" + from;
+        let url = this.baseUrl + this.listUrl + applicationUUID + '/' + userId + "?size=" + take + "&page=" + from;
 
         return this.http.get(url, this.localDataService.getToken());
     }
 
     searchById(appId: string, id: string) {
 
-        let url = this.basePathSw + this.listUrl + appId + this.searchIdUrl + id;
+        let url = this.baseUrl + this.listUrl + appId + this.searchIdUrl + id;
 
         return this.http.get(url, this.localDataService.getToken());
     }
 
     searchByUsername(appId: string, username: string) {
 
-        let url = this.basePathSw + this.listUrl + appId + this.searchUsernameUrl + username;
+        let url = this.baseUrl + this.listUrl + appId + this.searchUsernameUrl + username;
 
         return this.http.get(url, this.localDataService.getToken());
     }
 
-    create(apiKey: string, username: string, tenantUUID: string, applicationUUID: string, walletName: string, cred: string,
+    register(apiKey: string, username: string, tenantUUID: string, applicationUUID: string, walletName: string, cred: string,
             fonts: Set<string>, osType: string, browserType: string, browserVersion: string ) {
 
-        let url = this.basePathSw + this.createUrl;
+        let url = this.baseUrl + this.registerUrl;
 
         return this.http.postNoAuth(url, {
             apiKey: apiKey,
@@ -65,10 +62,10 @@ export class WalletService {
         });
     }
 
-    process(apiKey: string, eCred: string,
+    transact(apiKey: string, eCred: string,
            fonts: Set<string>, osType: string, browserType: string, browserVersion: string ) {
 
-        let url = this.basePathSw + this.createUrl;
+        let url = this.baseUrl + this.getcredentialsUrl;
 
         return this.http.postNoAuth(url, {
             apiKey: apiKey,
@@ -82,14 +79,14 @@ export class WalletService {
 
     changelockstatus(appId: string, id: string, locked: boolean) {
 
-        let url = this.basePathSw + this.changelockstatusUrl;
+        let url = this.baseUrl + this.changelockstatusUrl;
 
         return this.http.post(url, {applicationUUID: appId, id: id, lock: !locked}, this.localDataService.getToken());
     }
 
     disable(appId: string, id: string) {
 
-        let url = this.basePathSw + this.disableUrl;
+        let url = this.baseUrl + this.disableUrl;
 
         return this.http.post(url, {applicationUUID: appId, id: id}, this.localDataService.getToken());
     }
