@@ -61,10 +61,10 @@ export class WalletService {
         });
     }
 
-    transact(apiKey: string, eCred: string,
+    transact(apiKey: string, eCred: string, applicationUUID: string,
            fonts: Set<string>, osType: string, browserType: string, browserVersion: string ) {
 
-        let url = this.baseUrl + this.getcredentialsUrl;
+        let url = this.baseUrl + this.getcredentialsUrl + "/" + applicationUUID;
 
         return this.http.postNoAuth(url, {
             apiKey: apiKey,
