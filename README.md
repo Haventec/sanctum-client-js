@@ -1,14 +1,16 @@
-# Haventec Secure Wallet JS
+# Haventec Sanctum JS
 
-Haventec Secure Wallet Javascript SDK 
+Haventec Sanctum Javascript SDK 
 
 ## Installation
 
-`npm install haventec/securewallet-js`
+`npm install haventec/sanctum-js`
 
 ## Contributors
 
  - John Kelaita
+ - Naveen Neti
+
 
 ## License
 
