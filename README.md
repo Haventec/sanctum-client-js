@@ -4,7 +4,7 @@ Haventec Sanctum Javascript SDK
 
 ## Installation
 
-`npm install haventec/sanctum-js`
+`npm install haventec/sanctum-client-js`
 
 ## Contributors
 
